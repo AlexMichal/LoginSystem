@@ -18,12 +18,13 @@
                 </ul>
             </div>
             <div class="nav_login">
-                <form action="includes/login.inc.php" method="POST">
-                    <input type="text" name="username" placeholder="Username/e-mail">
-                    <input type="password" name="password" placeholder="password">
-                    <button type="submit" name ="submit">Login</button>
-                </form>
-                <a href="signup.php">Sign up</a>
+                <?php
+                    if (isset($_SESSION['u_username'])) {
+                        echo '<form action="includes/logout.inc.php" method="POST"><button type="submit" name="submit">Logout</button></form>';
+                    } else { // not logged in.
+                        echo '<form action="includes/login.inc.php" method="POST"><input type="text" name="username" placeholder="Username/e-mail"><input type="password" name="password" placeholder="password"><button type="submit" name ="submit">Login</button></form><a href="signup.php">Sign up</a>';
+                    }
+                ?>
             </div>
         </nav>
     </header>
