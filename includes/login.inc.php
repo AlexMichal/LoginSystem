@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../index.php?login=empty");
         exit();
     } else {
-        $sql =  "SELECT * FROM users WHERE user_username = '$username'";
+        $sql =  "SELECT * FROM users WHERE user_username = '$username' OR user_email='$username'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result); // returns how many rows found in the db using these params
         
@@ -35,8 +35,8 @@ if (isset($_POST['submit'])) {
                 } elseif ($hashedPasswordCheck == true) {
                     // true. log in user here.
                     $_SESSION['u_id'] = $row['user_id'];
-                    $_SESSION['u_firstname'] = $row['user_first_name'];
-                    $_SESSION['u_lastname'] = $row['user_last_name'];
+                    $_SESSION['u_first_name'] = $row['user_first_name'];
+                    $_SESSION['u_last_name'] = $row['user_last_name'];
                     $_SESSION['u_email'] = $row['user_email'];
                     $_SESSION['u_username'] = $row['user_username'];
                 
