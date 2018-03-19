@@ -10,7 +10,7 @@
             // check if session variable set
             // use the isset function to change any content on any page when a user is logged in
             if (isset($_SESSION['u_id'])) {
-                echo $_SESSION['u_uid'];
+                echo $_SESSION['u_username'];
             }
         ?>
     </div>
