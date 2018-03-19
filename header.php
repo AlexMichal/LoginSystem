@@ -1,3 +1,8 @@
+<?php
+    // need to have this on all pages of the website otherwise user won't be logged in on that page
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +18,9 @@
                 </ul>
             </div>
             <div class="nav_login">
-                <form>
-                    <input type="text" name="uid" placeholder="Username/e-mail">
-                    <input type="password" name="pwd" placeholder="password">
+                <form action="includes/login.inc.php" method="POST">
+                    <input type="text" name="username" placeholder="Username/e-mail">
+                    <input type="password" name="password" placeholder="password">
                     <button type="submit" name ="submit">Login</button>
                 </form>
                 <a href="signup.php">Sign up</a>

@@ -41,13 +41,13 @@ if (isset($_POST['submit'])) {
                     exit();
                 } else {
                     // hashing the password
-                    $hasedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+                    $hashedPassword = password_hash($pwd, PASSWORD_DEFAULT);
 
                     // insert the user into the database
                     $sql =  "INSERT INTO users (user_first_name, user_last_name, user_email, user_username, user_password)" .
-                            "VALUES ('$first', '$last', '$email', '$username', '$hashedPwd');";
+                            "VALUES ('$first', '$last', '$email', '$username', '$hashedPassword');";
                     
-                    // run this function
+                    // insert data into the database
                     mysqli_query($conn, $sql);
                     
                     // successful signup

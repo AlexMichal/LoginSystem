@@ -113,13 +113,13 @@ a {
 }
 
 body {
-    background-color: #aaa;
+    background-color: #fff;
 }
 
 header nav {
     width: 100%;
     height: 60px;
-    background-color: #fff;
+    background-color: #2E4272;
 }
 
 header nav ul {
@@ -131,12 +131,12 @@ header nav ul li {
     list-style: none;
 }
 
-
 header nav ul li a {
     font-family: arial;
     font-size: 16px;
     color: #111;
     line-height: 63px;
+    background-color: #2E4272; /* TODO*/
 }
 
 header .nav_login {
@@ -240,4 +240,8 @@ header .nav_login a {
 
 .signup_form button:hover {
     background-color: #111;
+}
+
+.input {
+    border-radius: 8px;
 }
