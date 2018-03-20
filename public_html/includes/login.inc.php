@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
                 // check if passwords are equal
                 if ($hashedPasswordCheck == false) {
                     // error if false
-                    header("Location: ../index.php?login=errorHERE");
+                    header("Location: ../index.php?login=invalidpassword");
                     exit();
                 } elseif ($hashedPasswordCheck == true) {
                     // true. log in user here.
