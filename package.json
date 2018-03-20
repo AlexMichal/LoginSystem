@@ -1,0 +1,20 @@
+{
+  "type": "dev",
+  "name": "jawsdblogin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexMichal/LoginSystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexMichal/LoginSystem/issues"
+  },
+  "homepage": "https://github.com/AlexMichal/LoginSystem#readme"
+}
