@@ -9,7 +9,7 @@ if ($deployed) {
     $dbName = "o5b26p64rbcl8s4x";
     $dbPort = "3306";
 
-    $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName, dbPort);
+    $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName, $dbPort);
 } else {
     $dbServerName = "localhost";
     $dbUsername = "root";
