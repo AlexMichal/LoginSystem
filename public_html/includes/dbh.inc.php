@@ -1,6 +1,6 @@
 <?php
 
-$deployed = true;
+$deployed = false;
 
 if ($deployed) {
     $dbServerName = "qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
