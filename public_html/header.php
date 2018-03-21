@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css?v=<?= time() ?>">
 <title></title>
 </head>
 <body>
@@ -20,9 +20,9 @@
             <div class="nav_login">
                 <?php
                     if (isset($_SESSION['u_username'])) {
-                        echo '<form action="includes/logout.inc.php" method="POST"><button type="submit" name="submit">Logout</button></form>';
+                        echo '<form action="includes/logout.inc.php" method="POST"><button type="submit" name="submit" class="nav_button">Logout</button></form>';
                     } else { // not logged in.
-                        echo '<form action="includes/login.inc.php" method="POST"><input type="text" name="username" placeholder="Username/e-mail"><input type="password" name="password" placeholder="password"><button type="submit" name ="submit">Login</button></form><a href="signup.php">Sign up</a>';
+                        echo '<form action="includes/login.inc.php" method="POST"><input type="text" name="username" placeholder="Username/e-mail"><input type="password" name="password" placeholder="password"><button type="submit" name ="submit" class="nav_button">Login</button></form><a href="signup.php" class="nav_button">Sign up</a>';
                     }
                 ?>
             </div>
