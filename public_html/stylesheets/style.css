@@ -162,40 +162,38 @@ header .nav_login form input {
     line-height: 30px;
 }
 
-header .nav_login form button {
+
+
+/* header sign up button */
+header .nav_login a {
+    margin-top: 15px;
+}
+
+/* nav buttons */
+.nav_button {
+    line-height: 30px;
+    display: block;
     float: left;
     width: 60px;
     height: 30px;
     margin-right: 10px;
     border: none;
-    background-color: #f3f3f3;
     font-family: arial;
     font-size: 14px;
     color: #111;
+    background-color: #f3f3f3;
     cursor: pointer; 
+    text-align: center;
 }
 
-
-header .nav_login form button:hover {
+.nav_button:hover {
     background-color: #ccc;
 }
 
-header .nav_login a {
-    display: block;
-    width: 60px;
-    height: 60px;
-    border: none;
-    float: left;
-    background-color: #fff;
-    font-family: arial;
-    font-size: 16px;
-    color: #111;
-    line-height: 63px;
-    cursor: pointer;
-}
 .main_container {
     padding-top: 40px;
 }
+
 .main_container h2 {
     font-family: arial;
     font-size: 40px;
@@ -227,7 +225,7 @@ header .nav_login a {
 
 .signup_form button {
     display: block;
-    margin: 0 auto; /* made it so that the buttom centered itself*/
+    margin: 0 auto; /* made it so that the button centered itself */
     width: 30%;
     height: 40px;
     border: none;
