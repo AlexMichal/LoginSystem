@@ -6,10 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 <title></title>
 </head>
-<body>
+<body>  
+    <!-- NAVIGATION BAR -->
     <header>
         <nav>
             <div class="main-wrapper">
@@ -19,10 +21,19 @@
             </div>
             <div class="nav_login">
                 <?php
+                    $loggedInHTML = '<form action="includes/logout.inc.php" method="POST">' .
+                                    '<button type="submit" name="submit">Logout</button>' .
+                                    '</form>';
+                    $notLoggedInHTML = '<form action="includes/login.inc.php" method="POST">' . 
+                                        '<input type="text" name="username" placeholder="Username/e-mail">' .
+                                        '<input type="password" name="password" placeholder="password">' .
+                                        '<button type="submit" name ="submit">Login</button></form>' .
+                                        '<a href="signup.php">Sign up</a>';
+
                     if (isset($_SESSION['u_username'])) {
-                        echo '<form action="includes/logout.inc.php" method="POST"><button type="submit" name="submit">Logout</button></form>';
-                    } else { // not logged in.
-                        echo '<form action="includes/login.inc.php" method="POST"><input type="text" name="username" placeholder="Username/e-mail"><input type="password" name="password" placeholder="password"><button type="submit" name ="submit">Login</button></form><a href="signup.php">Sign up</a>';
+                        echo $loggedInHTML;
+                    } else { // Not logged in
+                        echo $notLoggedInHTML;
                     }
                 ?>
             </div>
