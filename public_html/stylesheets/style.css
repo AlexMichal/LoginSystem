@@ -140,34 +140,31 @@ header nav ul li {
     line-height: 63px;
 }
 
-header .nav_login {
+#navbar_login {
     float: right;
-}
-
-header .nav_login form {
-    float: left;
     padding-top: 15px;
 }
 
-header .nav_login form input {
+#navbar_login form {
     float: left;
+}
+
+/* input boxes */
+#navbar_login form input {
     width: 140px;
     height: 30px;
     padding: 0px 10px; 
     margin-right: 10px;
     border: none;
-    background-color: #ccc;
+    border-radius: 3px;
+    background-color: #eee;
     font-family: arial;
     font-size: 14px;
     color: #111;
     line-height: 30px;
 }
 
-header .nav_login a { /* header sign up button */
-    margin-top: 15px;
-}
-
-.nav_button {
+/* .nav_button {
     line-height: 30px;
     display: block;
     float: left;
@@ -181,10 +178,14 @@ header .nav_login a { /* header sign up button */
     background-color: #f3f3f3;
     cursor: pointer; 
     text-align: center;
-}
+} */
 
 .nav_button:hover {
     background-color: #ccc;
+}
+
+#nav_signup_btn {
+    margin-left: 10px;
 }
 
 /*  */
