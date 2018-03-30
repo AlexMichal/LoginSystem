@@ -101,7 +101,8 @@ input, select {
     vertical-align:middle;
 }
 
-/***** MY CODE *****/
+/******* START OF MY CODE *******/
+/********************************/
 
 .main-wrapper {
     margin: 0 auto;
@@ -116,10 +117,12 @@ body {
     background-color: #fff;
 }
 
-header nav {
+/* NAVIGATION BAR */
+#navbar_main {
     width: 100%;
     height: 60px;
     background-color: #2E4272;
+    font-family: arial;
 }
 
 header nav ul {
@@ -127,16 +130,14 @@ header nav ul {
 }
 
 header nav ul li {
-    float: left;
+    /* float: left; */
     list-style: none;
 }
 
-header nav ul li a {
-    font-family: arial;
+#nav_home_btn {
     font-size: 16px;
-    color: #111;
+    color: #FFF;
     line-height: 63px;
-    background-color: #2E4272; /* TODO*/
 }
 
 header .nav_login {
@@ -162,12 +163,10 @@ header .nav_login form input {
     line-height: 30px;
 }
 
-/* header sign up button */
-header .nav_login a {
+header .nav_login a { /* header sign up button */
     margin-top: 15px;
 }
 
-/* nav buttons */
 .nav_button {
     line-height: 30px;
     display: block;
@@ -187,6 +186,8 @@ header .nav_login a {
 .nav_button:hover {
     background-color: #ccc;
 }
+
+/*  */
 
 .main_container {
     padding-top: 40px;
