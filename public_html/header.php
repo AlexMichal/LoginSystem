@@ -17,7 +17,7 @@
 <body>  
 <!-- NAVIGATION BAR -->
 <header>
-    <nav id="navbar_main" class="navbar">
+    <nav id="navbar_main" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- HOME button -->
             <div class="main-wrapper">
