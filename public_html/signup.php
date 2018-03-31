@@ -4,6 +4,12 @@
 
 <section class="main_container">
     <div id="signup_main" class="main_wrapper">
+        <!-- Welcome to Facebük -->
+        <div id="signup_header">
+            <h2><strong>Join Facebük!</strong></h2>
+            <p>It's easy.</p>
+        </div>
+
         <!-- TODO use an object -->
         <form id="signup_form" class="form-group" action="includes/signup.inc.php" method="POST">
             <input type="text" name="first_name" placeholder="First name" class="input form-control">
@@ -11,8 +17,8 @@
             <input type="text" name="email" placeholder="E-mail" class="input form-control">
             <input type="text" name="username" placeholder="Username" class="input form-control">
             <input type="password" name="password" placeholder="Password" class="input form-control">
-            <small id="signup_error" class="form-text text-alert">asdasd</small>
-            <button type="submit" name="submit" class="input form-control">Sign Up</button>
+            <small id="signup_error" class="form-text text-alert"></small>
+            <button type="submit" name="submit" class="btn btn-primary btn-lg">Sign Up</button>
         </form>
         
         <div id="signup_login_main" class="main_wrapper">
