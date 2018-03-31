@@ -17,13 +17,18 @@
 <body>  
 <!-- NAVIGATION BAR -->
 <header>
+    <!-- TODO signup should be more centered so it doesn't bleed to the right -->
     <nav id="navbar_main" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- HOME button -->
             <div class="main-wrapper">
                 <ul>
                     <!-- TODO add button class? -->
-                    <li><a id="nav_home_btn" href="index.php" role="button">Home</a></li> 
+                    <li>
+                        <a id="nav_home_btn" href="index.php" role="button">
+                            <img src="assets/facebuk.png" style="width: 30px; height: 30px" title="Facebuk logo" alt="Home">
+                        </a>
+                    </li> 
                 </ul>
             </div>
             
@@ -36,7 +41,7 @@
                         '</form>';
                     $notLoggedInHTML =  
                         '<form action="includes/login.inc.php" method="POST">' . 
-                        '<input type="text" name="username" placeholder="Username/e-mail">' .
+                        '<input type="text" name="username" placeholder="username / e-mail">' .
                         '<input type="password" name="password" placeholder="password">' .
                         '<button type="submit" name="submit" class="btn btn-primary btn-sm">Login</button>'.
                         '</form>' .
@@ -52,3 +57,4 @@
         </div>
     </nav>
 </header>
+<main>
