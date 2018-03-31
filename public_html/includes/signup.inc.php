@@ -1,6 +1,7 @@
 <?php 
 if (isset($_POST['submit'])) {
     
+    // TODO once SUCCESS we should change to INDEX
     include_once 'dbh.inc.php';
 
     $first = mysqli_real_escape_string($conn, $_POST['first_name']);
