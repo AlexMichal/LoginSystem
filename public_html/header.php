@@ -20,13 +20,13 @@
     <!-- TODO signup should be more centered so it doesn't bleed to the right -->
     <nav id="navbar_main" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <!-- HOME button -->
+            <!-- FB LOGO -->
             <div class="main-wrapper">
                 <ul>
                     <!-- TODO add button class? -->
                     <li>
                         <a id="nav_home_btn" href="index.php" role="button">
-                            <img src="assets/facebuk.png" style="width: 30px; height: 30px" title="Facebuk logo" alt="Home">
+                            <img src="assets/facebuk-sm.png" style="width: 30px; height: 30px" title="Facebuk logo" alt="Home">
                         </a>
                     </li> 
                 </ul>

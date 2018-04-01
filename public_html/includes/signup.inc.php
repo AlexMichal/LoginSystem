@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
                     // insert the user into the database
-                    $sql =  "INSERT INTO users (user_first_name, user_last_name, user_email, user_username, user_password)" .
+                    $sql =  "INSERT INTO users (user_first_name, user_last_name, user_email, user_username, user_password) " .
                             "VALUES ('$first', '$last', '$email', '$username', '$hashedPassword');";
                     
                     // insert data into the database

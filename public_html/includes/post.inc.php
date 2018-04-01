@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     } else {
         // Check to see if u_id is set
         if (isset($_SESSION['u_id'])) {
+            // TODO check to see if you even inserted into the message table
             $userId = $_SESSION['u_id'];
             $sql =  "INSERT INTO messages (message_post, message_user_id)" .
                     "VALUES ('$post', '$userId');";
@@ -26,6 +27,4 @@ if (isset($_POST['submit'])) {
             exit();
         }
     }
-} else {
-
 }
