@@ -16,16 +16,40 @@
             <!-- POST A NEW MESSAGE -->
             <form id="message_form" class="form-group" action="includes/post.inc.php" method="POST">
                 <!-- <label for="comment">Comment:</label> -->
-                <!-- <textarea class="form-control" rows="5" id="comment" name="message" form="message_form"></textarea> -->
-                <input type="text" name="message" class="input form-control">
+                <textarea id="message" class="form-control" rows="5"name="message" form="message_form"></textarea>
+                <!-- <input type="text" name="message" class="input form-control"> -->
                 <button class="btn" name="submit" type="submit">Post</button>
             </form>
 
             <!-- POSTS (YOURS AND FRIENDS) -->
             <div class="">
-                Posts:
-                <?php
+                Posts:<br />
+                <?php 
+                if (isset($_SESSION['u_id'])) {
+                    include_once 'includes/dbh.inc.php';
 
+                    // query the latest message
+                    $userId = $_SESSION['u_id'];
+                    // $sql =  "SELECT message_post" .
+                    //         "FROM messages" .
+                    //         "WHERE message_user_id = '9';";
+                            
+                    $sql = "SELECT message_post FROM messages WHERE message_user_id = ' $userId ';";
+                    $result = mysqli_query($conn, $sql);
+                   
+                    
+                    echo mysqli_num_rows($result);
+
+                    if (!empty($result)) {
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo $row[0] . "<br />";
+                        }
+                    }
+                } else {
+                    echo "There doesn't seem to be anything here.";
+                }
+
+                mysqli_close($conn); // Close connection to the DB
                 ?>
             </div>
         </div>
