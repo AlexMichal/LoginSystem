@@ -165,22 +165,6 @@ header nav ul li {
     line-height: 30px;
 }
 
-/* .nav_button {
-    line-height: 30px;
-    display: block;
-    float: left;
-    width: 60px;
-    height: 30px;
-    margin-right: 10px;
-    border: none;
-    font-family: arial;
-    font-size: 14px;
-    color: #111;
-    background-color: #f3f3f3;
-    cursor: pointer; 
-    text-align: center;
-} */
-
 .nav_button:hover {
     background-color: #ccc;
 }
@@ -193,6 +177,9 @@ header nav ul li {
 #nav_signup_btn {
     margin-left: 10px;
 }
+
+/* index.php */
+
 
 /*  */
 
