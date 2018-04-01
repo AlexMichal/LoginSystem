@@ -7,3 +7,4 @@
         header("Location: ../index.php"); // take us back to the front page
         exit();
     }
+?>

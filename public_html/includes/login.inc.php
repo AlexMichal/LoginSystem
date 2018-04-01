@@ -1,7 +1,6 @@
 <?php
 
-// starts session inside the website
-session_start();
+session_start(); // starts session inside the website
 
 if (isset($_POST['submit'])) {
     include 'dbh.inc.php'; 
@@ -19,7 +18,7 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result); // returns how many rows found in the db using these params
         
-        if ($resultCheck < 1) { // no results found
+        if ($resultCheck < 1) { // no results found, we exit
             header("Location: ../index.php?login=error");
             exit();
         } else {
