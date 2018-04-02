@@ -79,7 +79,7 @@
                     echo "There doesn't seem to be anything here.";
                 }
             } else {
-                echo "You are not logged in.";
+                echo "<h4>You are not logged in.</h4>";
             }
             ?>
     </div>
