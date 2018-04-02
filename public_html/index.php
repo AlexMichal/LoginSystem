@@ -1,7 +1,24 @@
 <?php
     include_once 'header.php';
 ?>
+ <!-- jQuery script for loading more posts -->
+<script>
+    $(document).ready(function() {
+        var postCount = 6; 
 
+        $("#butt").click(function() {
+            var userId = <?php echo json_encode($_SESSION['u_id']) ?>; // Inject SESSION user id
+
+            postCount = postCount + 2;
+
+            $("#index_posts").load("load-messages.php", {
+                postNewCount: postCount,
+                userId: userId
+            });
+        });
+    });
+</script>
+        
 <section class="main_container">
     <div class="main_wrapper container">
         <?php // If logged in then do stuff
@@ -27,36 +44,42 @@
                 ?>
             </div>
         </div>
-            
+
         <!-- POSTS (YOURS AND FRIENDS) -->
-        <?php
-            include_once 'includes/dbh.inc.php'; // Open the DB
+        <div id="index_posts">
+            <?php
+                include_once 'includes/dbh.inc.php'; // Open the DB
 
-            $userId = $_SESSION['u_id'];
-                    
-            $sql =  "SELECT message_post, message_timestamp " . 
-                    "FROM messages " .
-                    "WHERE message_user_id = '$userId' " .
-                    "ORDER BY message_timestamp DESC;";
-            $result = mysqli_query($conn, $sql);
-            $resultRows = mysqli_num_rows($result);
+                $userId = $_SESSION['u_id'];  
+                $sql =  "SELECT message_post, message_timestamp " . 
+                        "FROM messages " .
+                        "WHERE message_user_id = '$userId' " .
+                        "ORDER BY message_timestamp DESC " .
+                        "LIMIT 6;";
+                $result = mysqli_query($conn, $sql);
+                $resultRows = mysqli_num_rows($result);
 
-            mysqli_close($conn); // Close connection to the DB
+                mysqli_close($conn); // Close connection to the DB
 
-            if (!$resultRows == 0) {
-                if (!empty($result)) {
-                    while ($row = mysqli_fetch_array($result)) {
-                        echo '<div class="row">';
-                        echo '<div class="col col-md-5 index index_results">';
-                        echo "<p>" . $row[0] . "</p>";
-                        echo "<p>" . $row[1] . "</p>";
-                        echo '</div>';
-                        echo '</div>';
+                if (!$resultRows == 0) {
+                    if (!empty($result)) {
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo '<div class="row">';
+                            echo '<div class="col col-md-5 index index_results">';
+                            echo "<p>" . $row['message_post'] . "</p>";
+                            echo "<p>" . $row['message_timestamp'] . "</p>";
+                            echo '</div>';
+                            echo '</div>';
+                        }
                     }
+                } else {
+                    echo "There doesn't seem to be anything here.";
                 }
-            } else {
-                echo "There doesn't seem to be anything here.";
-            }
+            ?>
+        </div>
+        <button id="butt" class="btn btn-primary">Load More Posts</button>
+
+        <?php
         } else {
             echo "You are not logged in.";
         }
