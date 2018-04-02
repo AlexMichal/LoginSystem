@@ -72,18 +72,16 @@
                             echo '</div>';
                         }
                     }
+                    echo '</div>';
+                    echo '<button id="butt" class="btn btn-primary">Load More Posts</button>';
+                    
                 } else {
                     echo "There doesn't seem to be anything here.";
                 }
+            } else {
+                echo "You are not logged in.";
+            }
             ?>
-        </div>
-        <button id="butt" class="btn btn-primary">Load More Posts</button>
-
-        <?php
-        } else {
-            echo "You are not logged in.";
-        }
-        ?>
     </div>
 </section>
 
