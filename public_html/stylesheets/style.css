@@ -105,10 +105,10 @@ input, select {
 /******* START OF MY CODE *******/
 /********************************/
 
-.main-wrapper {
+/* .main-wrapper {
     margin: 0 auto;
     width: 1000px;
-}
+} */
 
 a {
     text-decoration: none;
@@ -120,14 +120,8 @@ body {
 
 /* NAVIGATION BAR */
 #navbar_main {
-    width: 100%;
-    height: 50px;
     background-color: #2E4272;
     font-family: arial;
-}
-
-header nav ul {
-    float: left;
 }
 
 header nav ul li {
@@ -138,19 +132,20 @@ header nav ul li {
     font-size: 16px;
     color: #FFF;
     line-height: 45px;
+    
 }
 
-#navbar_login {
-    float: right;
+#navbar_login_and_signup {
     padding-top: 10px;
+    justify-content: flex-end;
 }
 
-#navbar_login form {
-    float: left;
+#navbar_login_and_signup form {
+    /* float: left; */
 }
 
 /* input boxes */
-#navbar_login form input {
+#navbar_login_and_signup form input {
     width: 140px;
     height: 30px;
     padding: 0px 10px; 
@@ -174,7 +169,7 @@ header nav ul li {
 }
 
 #nav_signup_btn {
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 
 /* index.php */
