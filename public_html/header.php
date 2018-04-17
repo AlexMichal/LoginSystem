@@ -48,14 +48,16 @@
                 <?php
                 } else { // User is NOT logged in
                 ?>
-                    <div class="">
-                        <form class="form-inline" action="includes/login.inc.php" method="POST">
-                            <input class="form-control" type="text" name="username" placeholder="username / e-mail">
-                            <input class="form-control" type="password" name="password" placeholder="password">
-                            <button class="form-control btn btn-primary btn-sm" type="submit" name="submit">Login</button>
-                        </form>
-                        <a class="nav-item btn btn-primary btn-sm" id="nav_signup_btn" href="signup.php" role="button">Sign up</a>
-                    </div>
+                    <form class="form-inline" action="includes/login.inc.php" method="POST">
+                        <ul class="navbar-nav">
+                            <input class="form-control nav-item" type="text" name="username" placeholder="username / e-mail">
+                            <input class="form-control nav-item" type="password" name="password" placeholder="password">
+                        
+                            <button class="form-control nav-item btn btn-primary btn-sm nav_button" type="submit" name="submit">Login</button>
+                            <a class="nav-item btn btn-primary btn-sm nav_button" id="nav_signup_btn" href="signup.php" role="button">Sign up</a>
+                            <!-- TODO ask justin about having a link in the form -->
+                        </ul>
+                    </form>
                 <?php
                 }
                 ?>

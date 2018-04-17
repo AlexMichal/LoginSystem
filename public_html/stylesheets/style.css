@@ -130,18 +130,11 @@ header nav ul li {
 
 #nav_home_btn {
     font-size: 16px;
-    color: #FFF;
-    line-height: 45px;
-    
+    color: #FFF; 
 }
 
 #navbar_login_and_signup {
-    padding-top: 10px;
     justify-content: flex-end;
-}
-
-#navbar_login_and_signup form {
-    /* float: left; */
 }
 
 /* input boxes */
@@ -149,7 +142,6 @@ header nav ul li {
     width: 140px;
     height: 30px;
     padding: 0px 10px; 
-    margin-right: 10px;
     border: none;
     border-radius: 3px;
     background-color: #eee;
@@ -157,6 +149,10 @@ header nav ul li {
     font-size: 14px;
     color: #111;
     line-height: 30px;
+}
+
+#navbar_login_and_signup .nav-item {
+    margin: 3px 0 3px 5px;
 }
 
 .nav_button:hover {
@@ -168,8 +164,8 @@ header nav ul li {
     box-shadow: 0px 0px 8px 2px rgba(255, 255, 255, 0.1);
 }
 
-#nav_signup_btn {
-    /* margin-left: 10px; */
+.nav_button {
+    width: 65px !important;
 }
 
 /* index.php */
@@ -288,7 +284,7 @@ body {
 
 body main {
     width: 100%;
-    max-width: 1024px;
+    max-width: 1111px; /* change this: original is 1024*/
     height: auto;
     min-height: 100vh;
     position: relative;
