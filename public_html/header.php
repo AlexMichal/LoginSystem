@@ -43,7 +43,7 @@
                 if (isset($_SESSION['u_username'])) { // User is Logged in
                 ?>
                     <form action="includes/logout.inc.php" method="POST">
-                    <button type="submit" name="submit" class="btn btn-primary btn-sm">Logout</button>
+                        <button type="submit" name="submit" class="btn btn-primary btn-sm nav-item">Logout</button>
                     </form>
                 <?php
                 } else { // User is NOT logged in

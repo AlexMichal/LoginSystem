@@ -117,8 +117,9 @@ a {
 body {
     background-color: #fff;
 }
-
+/* ************** */
 /* NAVIGATION BAR */
+/* ************** */
 #navbar_main {
     background-color: #2E4272;
     font-family: arial;
@@ -168,13 +169,13 @@ header nav ul li {
     width: 65px !important;
 }
 
-/* index.php */
-
+/* ***** */
+/* INDEX */
+/* ***** */
 .index {
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -284,7 +285,7 @@ body {
 
 body main {
     width: 100%;
-    max-width: 1111px; /* change this: original is 1024*/
+    max-width: 1120px; /* change this: original is 1024*/
     height: auto;
     min-height: 100vh;
     position: relative;
