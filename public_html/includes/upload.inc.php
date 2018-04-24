@@ -1,4 +1,6 @@
 <?php
+session_start(); // resume current session
+
 define('VALID_FILE_TYPES', array('jpg', 'jpeg', 'png', 'pdf'));
 
 if (isset($_POST['submit'])) { // name we're checking for inside the method is 'submit'
@@ -17,9 +19,14 @@ if (isset($_POST['submit'])) { // name we're checking for inside the method is '
     if (in_array($fileActualExtension, $allowed)) {
         if ($fileError === 0) { // 0 means no error
             if ($fileSize < $validFileSize) { 
+                $fileDirectory = "../uploads/" . $_SESSION['u_username'];
                 $fileNameNew = uniqid('', true) . "." . $fileActualExtension; // create a unique number in microseconds and then append the file extension to it77
-                $fileDestination = '../uploads/' . $fileNameNew;
+                $fileDestination = $fileDirectory . "/" . $fileNameNew;
                 
+                if (!file_exists($fileDirectory)) {
+                    mkdir($fileDirectory, 0777, true);
+                }
+
                 move_uploaded_file($fileTmpFileLocation, $fileDestination);
                 header("Location: ../index.php?uploadSuccess"); // bring back to index.php when we're done
             } else {
