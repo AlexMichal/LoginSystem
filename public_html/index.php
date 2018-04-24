@@ -25,6 +25,13 @@
         if (isset($_SESSION['u_id'])) {
         ?>
         
+        <!-- PROFILE PIC -->
+        <div id="profile_pic" class="index">
+            <img src="assets/defaultprofilepic.png" alt="Image of User" class="">
+        </div>
+
+        <hr>
+
         <!-- POST A NEW MESSAGE -->
         <div class="row">
             <div id="index_message_form" class="col col-md-5 index">
