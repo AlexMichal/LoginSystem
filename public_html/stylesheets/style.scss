@@ -67,15 +67,22 @@ header nav ul li {
 /* ***** */
 $defaultBorderRadius: 10px;
 $defaultShadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+$defaultPadding: 8px;
 
-// profile pic
-#index_profile_pic {
-    width: 210px;
+// profile
+#index_top {
+    display: flex;
+    justify-content: space-between;
 }
 
+#index_profile_info {
+    padding: 20px;
+}
+
+// profile pic
 .index {
     background-color: #fff;
-    padding: 10px;
+    padding: $defaultPadding;
     border-radius: $defaultBorderRadius;
     box-shadow: $defaultShadow;
 }
@@ -112,7 +119,7 @@ $defaultShadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
     padding-top: 65px;
 }
 
-.main_container h2 {
+#signup_header h2 {
     font-family: arial;
     font-size: 40px;
     color: #111;
@@ -216,4 +223,16 @@ html {
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+
+.flex-auto {
+    flex: auto;
+}
+
+.flex-none {
+    flex: none;
+}
+
+.display-flex {
+    display: flex;
 }

@@ -20,16 +20,25 @@
 </script>
         
 <section class="main_container">
-    <div class="main_wrapper container">
+    <div class="container">
         <?php // If logged in then do stuff
         if (isset($_SESSION['u_id'])) {
         ?>
-        
-        <!-- PROFILE PIC -->
-        <div id="index_profile_pic" class="index">
-            <img src="assets/defaultprofilepic.png" alt="Image of User" class="">
-        </div>
+        <div id="index_top" class="display-flex">
+            <!-- PROFILE PIC -->
+            <div id="index_profile_pic" class="item index flex-none">
+                <img src="assets/defaultprofilepic.png" alt="Image of User" class="">
+            </div>
+            
+            <div id="index_profile_info" class="item flex-auto">
+                <h2><?php 
+                    echo $_SESSION['u_first_name'] . " " . $_SESSION['u_last_name'];;
+                ?>
+                </h2>
 
+            </div>
+        </div>
+        <!-- SEPARATOR -->
         <hr>
 
         <!-- POST A NEW MESSAGE -->

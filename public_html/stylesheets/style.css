@@ -163,13 +163,18 @@ header nav ul li {
 /* ***** */
 /* INDEX */
 /* ***** */
-#index_profile_pic {
-  width: 210px;
+#index_top {
+  display: flex;
+  justify-content: space-between;
+}
+
+#index_profile_info {
+  padding: 20px;
 }
 
 .index {
   background-color: #fff;
-  padding: 10px;
+  padding: 8px;
   border-radius: 10px;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
 }
@@ -206,7 +211,7 @@ header nav ul li {
   padding-top: 65px;
 }
 
-.main_container h2 {
+#signup_header h2 {
   font-family: arial;
   font-size: 40px;
   color: #111;
@@ -311,5 +316,17 @@ html {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.display-flex {
+  display: flex;
 }
 /*# sourceMappingURL=style.css.map */
