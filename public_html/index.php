@@ -26,7 +26,7 @@
         ?>
         
         <!-- PROFILE PIC -->
-        <div id="profile_pic" class="index">
+        <div id="index_profile_pic" class="index">
             <img src="assets/defaultprofilepic.png" alt="Image of User" class="">
         </div>
 
@@ -34,7 +34,7 @@
 
         <!-- POST A NEW MESSAGE -->
         <div class="row">
-            <div id="index_message_form" class="col col-md-5 index">
+            <div id="index_message_form" class="col col-md-5.5 index">
                 <form id="message_form" class="form-group" action="includes/post.inc.php" method="POST">
                     <!-- <label for="comment">Comment:</label> -->
                     <textarea id="message" class="form-control" rows="4" name="message" form="message_form"></textarea>
@@ -43,7 +43,7 @@
             </div>
 
             <!-- FRIENDS LIST -->
-            <div id="index_friends_list" class="col col-md-5 index">
+            <div id="index_friends_list" class="col col-md-5.5 index">
                 <?php
                 echo 'Friend 1<br />';
                 echo 'Friend 2<br />';

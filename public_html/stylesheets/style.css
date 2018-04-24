@@ -100,19 +100,8 @@ input, select {
   vertical-align: middle;
 }
 
-/********************************/
-/******* START OF MY CODE *******/
-/********************************/
-/* .main-wrapper {
-    margin: 0 auto;
-    width: 1000px;
-} */
 a {
   text-decoration: none;
-}
-
-body {
-  background-color: #fff;
 }
 
 /* ************** */
@@ -121,6 +110,10 @@ body {
 #navbar_main {
   background-color: #2E4272;
   font-family: arial;
+}
+
+#navbar_main .container {
+  max-width: 1000px;
 }
 
 header nav ul li {
@@ -170,7 +163,7 @@ header nav ul li {
 /* ***** */
 /* INDEX */
 /* ***** */
-#profile_pic {
+#index_profile_pic {
   width: 210px;
 }
 
@@ -221,7 +214,9 @@ header nav ul li {
   text-align: center;
 }
 
-/* signup.php */
+/**********/
+/* SIGNUP */
+/**********/
 #signup_header {
   text-align: center;
 }
@@ -276,17 +271,20 @@ header nav ul li {
   border-radius: 8px;
 }
 
-/*  */
+/*************/
+/* UNIVERSAL */
+/*************/
 body {
   position: relative;
   width: 100%;
   height: auto;
   min-height: 100%;
+  background-color: #fff;
 }
 
 body main {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1000px;
   /* change this: original is 1024*/
   height: auto;
   min-height: 100vh;
