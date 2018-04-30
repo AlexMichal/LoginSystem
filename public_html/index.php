@@ -1,4 +1,6 @@
 <?php
+    echo "asd";
+    // phpinfo(); exit;
     include_once 'header.php';
 ?>
  <!-- jQuery script for loading more posts -->
@@ -27,7 +29,33 @@
         <div id="index_top" class="display-flex">
             <!-- PROFILE PIC -->
             <div id="index_profile_pic" class="item index flex-none">
-                <img src="assets/defaultprofilepic.png" alt="Image of User" class="">
+                <a href="uploadimage.php">
+                    <?php
+                    $path = "../uploads/" . $_SESSION['u_username'] . "/";
+                    $imagePath = "";
+
+                    if (file_exists($path)) {
+                        $latest_ctime = 0;
+                        $latest_filename = '';    
+                        $d = dir($path);
+                        $x = "5adea53a953573.03704107.jpg";
+                        // while (false !== ($entry = $d->read())) {
+                        //     $filepath = "{$path}/{$entry}";
+                        //     // could do also other checks than just checking whether the entry is a file
+                        //     if (is_file($filepath) && filectime($filepath) > $latest_ctime) {
+                        //         $latest_ctime = filectime($filepath);
+                        //         $latest_filename = $entry;
+                        //     }
+                        // }
+                        $imagePatch = $x;
+                    } else { // use default image
+                        $imagePath = "assets/defaultprofilepic.png";
+                    }
+                    
+                    echo '<img src="'. $imagePath . '" alt="Image of User" class="">';  
+                    ?>
+                    
+                </a>
             </div>
             
             <div id="index_profile_info" class="item flex-auto">
