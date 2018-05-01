@@ -1,6 +1,7 @@
 @import 'reset';
 
 $widthOfDocument: 1000px;
+$defaultShadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
 
 a {
     text-decoration: none;
@@ -66,7 +67,6 @@ header nav ul li {
 /* INDEX */
 /* ***** */
 $defaultBorderRadius: 10px;
-$defaultShadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
 $defaultPadding: 8px;
 
 // profile
@@ -86,7 +86,7 @@ $defaultPadding: 8px;
     border-radius: $defaultBorderRadius;
     box-shadow: $defaultShadow;
 }
-
+ 
 #index_message_form {
     text-align: right;
 }
@@ -132,6 +132,7 @@ $defaultPadding: 8px;
 /**********/
 #signup_header {
     text-align: center;
+    margin-top: 10px;
 }
 
 #signup_header p {
@@ -146,8 +147,7 @@ $defaultPadding: 8px;
     margin: 20px auto;
     padding: 20px 20px 1px 20px;
     border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: $defaultShadow;
     text-align: center;
 }
 
@@ -166,8 +166,7 @@ $defaultPadding: 8px;
     font-size: 16px;
     color: #111;
     line-height: 40px;
-    -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: $defaultShadow;
 }
 
 #signup_form button {
@@ -181,6 +180,38 @@ $defaultPadding: 8px;
 
 .input {
     border-radius: 8px;
+}
+
+/****************/
+/* UPLOAD IMAGE */
+/****************/
+
+.upload_image {
+    background-color: #fff;
+    width: 600px;
+    margin: 10px auto;
+    padding: 11px;
+    border-radius: 10px;
+    box-shadow: $defaultShadow;
+}
+
+
+#upload_image_frame {
+    height: 400px;
+}
+
+#upload_image_form input {
+    width: 85%;
+}
+
+#upload_image_form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#upload_image_back_button {
+    text-align: right;
 }
 
 /*************/

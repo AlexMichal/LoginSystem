@@ -1,5 +1,4 @@
 <?php
-    echo "asd";
     // phpinfo(); exit;
     include_once 'header.php';
 ?>
@@ -20,7 +19,6 @@
         });
     });
 </script>
-        
 <section class="main_container">
     <div class="container">
         <?php // If logged in then do stuff
