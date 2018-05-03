@@ -1,5 +1,16 @@
 <?php
+
+// namespace app\service\myservice;
+
 session_start(); // resume current session
+
+// try {
+//     tesrt();
+// } catch (Exception $e) {
+//     $msg = $e->getMessage();
+//     error_log($msg);
+//     exit;
+// }
 
 // UPLOAD IMAGE BUTTOn
 if (isset($_POST['upload_submit'])) { // name we're checking for inside the method is 'submit'
@@ -14,51 +25,54 @@ if (isset($_POST['upload_submit'])) { // name we're checking for inside the meth
     $allowed = array('jpg', 'jpeg', 'png');
     $validFileSize = "2000000";
    
-    if (true) { // TODO add error if theres no file selected
-        if (in_array($fileActualExtension, $allowed)) {
-            if ($fileError === 0) { // 0 means no error
-                if ($fileSize < $validFileSize) { 
-                    // uploadFile();
 
-                    $fileDirectory = "../uploads/" . $_SESSION['u_username'];
-                    $fileNameNew = uniqid('', true) . "." . $fileActualExtension; // create a unique number in microseconds and then append the file extension to it77
-                    $fileDestination = $fileDirectory . "/" . $fileNameNew;
-                    
-                    if (!file_exists($fileDirectory)) {
-                        mkdir($fileDirectory, 0777, true);
-                    }
-            
-                    move_uploaded_file($fileTmpFileLocation, $fileDestination);
-
-                    header("Location: ../uploadimage.php?upload=success");
-                } else {
-                    // Error: filesize too large
-                    header("Location: ../uploadimage.php?upload=filesize_too_large");
-                }
-            } else {
-                // Error: file upload error
-                header("Location: ../uploadimage.php?upload=error");
-            }
-        } else { 
-            // Error: incorrect file type
-            header("Location: ../uploadimage.php?upload=wrong_file_type");
-        }
-    } else {
-        // Error: no file selected
-        header("Location: ../uploadimage.php?upload=no_file_selected");
+    try {
+        uploadFile();
+    } catch(Exception $e) {
+        $msg = $e->getMessage();
+        error_log($msg);
+    exit;
     }
-   
-    // function uploadFile() {
-    //     $fileDirectory = "../uploads/" . $_SESSION['u_username'];
-    //     $fileNameNew = uniqid('', true) . "." . $fileActualExtension; // create a unique number in microseconds and then append the file extension to it77
-    //     $fileDestination = $fileDirectory . "/" . $fileNameNew;
-        
-    //     if (!file_exists($fileDirectory)) {
-    //         mkdir($fileDirectory, 0777, true);
-    //     }
+}
 
-    //     move_uploaded_file($fileTmpFileLocation, $fileDestination);
-    // }
+function uploadFile() {
+    $fileDirectory = "../uploads/" . $_SESSION['u_username'];
+    $fileNameNew = uniqid('', true) . "." . $fileActualExtension; // create a unique number in microseconds and then append the file extension to it77
+    $fileDestination = $fileDirectory . "/" . $fileNameNew;
+    
+    // Error: no file selected
+    if (false) { // TODO add error if theres no file selected
+        header("Location: ../uploadimage.php?upload=no_file_selected");
+    } else {
+
+    }
+
+    // Error: incorrect file type
+    $isAcceptableFileType = in_array($fileActualExtension, $allowed);
+    if (!$isAcceptableFileType) {
+        throw new Exception('File is not acceptable.');
+        header("Location: ../uploadimage.php?upload=wrong_file_type");
+    }
+
+    $hasError = ($fileError === 1);
+    if ($hasError) { // 0 means no error
+        // Error: file upload error
+        throw new Exception('Error uploading file.');
+        header("Location: ../uploadimage.php?upload=error");
+    }
+
+    if ($fileSize < $validFileSize) { 
+        // Error: filesize too large
+        header("Location: ../uploadimage.php?upload=filesize_too_large");
+    }
+
+    if (!file_exists($fileDirectory)) {
+        mkdir($fileDirectory, 0777, true);
+    }
+
+    move_uploaded_file($fileTmpFileLocation, $fileDestination);
+
+    header("Location: ../uploadimage.php?upload=success");
 }
 
 // BACK BUTTON

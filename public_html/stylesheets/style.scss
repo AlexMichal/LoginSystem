@@ -3,10 +3,6 @@
 $widthOfDocument: 1000px;
 $defaultShadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
 
-a {
-    text-decoration: none;
-}
-
 /* ************** */
 /* NAVIGATION BAR */
 /* ************** */
@@ -188,20 +184,26 @@ $defaultPadding: 8px;
 
 .upload_image {
     background-color: #fff;
-    width: 600px;
+    width: 400px;
     margin: 10px auto;
     padding: 11px;
     border-radius: 10px;
     box-shadow: $defaultShadow;
 }
 
-
 #upload_image_frame {
     height: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+#upload_image_background {
+    background-color: rgb(230, 230, 230);
+    width: 100%;
 }
 
 #upload_image_form input {
-    width: 85%;
+    width: 78%;
 }
 
 #upload_image_form {
@@ -217,6 +219,11 @@ $defaultPadding: 8px;
 /*************/
 /* UNIVERSAL */
 /*************/
+
+a {
+    text-decoration: none;
+}
+
 body {
     position: relative;
     width: 100%;

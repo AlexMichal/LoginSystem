@@ -1,6 +1,5 @@
 <?php 
 if (isset($_POST['submit'])) {
-    
     // TODO once SUCCESS we should change to INDEX
     include_once 'dbh.inc.php';
 
@@ -51,15 +50,31 @@ if (isset($_POST['submit'])) {
                     // insert data into the database
                     mysqli_query($conn, $sql);
                     
-                    // successful signup
-                    header("Location: ../signup.php?signup=success");
-                    exit();
+                    // go into the db and select user we just created so that we can use this information in our image tbl
+                    $sql = "SELECT * FROM users WHERE user_username = '$username' AND user_first_name = '$first'";
+                    $results = mysqli_query($conn, $sql); // run the query
+                    
+                    if (mysqli_num_rows($results) > 0 ) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            $id = $row['user_id'];
+
+                            // set status in profileimage for new user to 1
+                            $sql =  "INSERT INTO profileimage ('$id', 1) " .
+                                    "VALUES ('$first', '$last', '$email', '$username', '$hashedPassword');";
+
+                            // successful signup
+                            header("Location: ../index.php?signup=success");
+                            exit();
+                        }
+                    } else {
+                        header("Location: ../signup.php?signup=usernotfound");
+                    }
                 }
             }   
         }
     }
 
 } else {
-    header("Location: ../signup.php");
+    header("Location: ../signup.php?signup=failed");
     exit(); // closes off and stops the script from running
 }

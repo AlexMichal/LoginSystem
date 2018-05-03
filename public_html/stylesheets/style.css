@@ -100,10 +100,6 @@ input, select {
   vertical-align: middle;
 }
 
-a {
-  text-decoration: none;
-}
-
 /* ************** */
 /* NAVIGATION BAR */
 /* ************** */
@@ -280,7 +276,7 @@ header nav ul li {
 /****************/
 .upload_image {
   background-color: #fff;
-  width: 600px;
+  width: 400px;
   margin: 10px auto;
   padding: 11px;
   border-radius: 10px;
@@ -289,10 +285,17 @@ header nav ul li {
 
 #upload_image_frame {
   height: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+#upload_image_background {
+  background-color: #e6e6e6;
+  width: 100%;
 }
 
 #upload_image_form input {
-  width: 85%;
+  width: 78%;
 }
 
 #upload_image_form {
@@ -308,6 +311,10 @@ header nav ul li {
 /*************/
 /* UNIVERSAL */
 /*************/
+a {
+  text-decoration: none;
+}
+
 body {
   position: relative;
   width: 100%;
