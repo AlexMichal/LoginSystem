@@ -1,5 +1,6 @@
 <?php
 
+// TODO hash password
 class User {
     private $username;
     private $password;
@@ -7,7 +8,7 @@ class User {
     private $lastName;
     private $email;
 
-    function __construct($username, $password, $firstName, $lastName, $email) {
+    function __construct(string $username, string $password, string $firstName, string $lastName, string $email) {
         $this->username = $username;
         $this->password = $password;
         $this->firstName = $firstName;
@@ -22,6 +23,10 @@ class User {
     // GETTERS
     function getUsername() {
         return $this->username;
+    }
+
+    function getPassword() {
+        return $this->password;
     }
 
     function getFirstName() {
