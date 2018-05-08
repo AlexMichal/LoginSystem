@@ -28,7 +28,6 @@ function uploadFile() {
     $fileNameNew = uniqid('', true) . "." . $fileActualExtension; // create a unique number in microseconds and then append the file extension to it77
     $fileDestination = $fileDirectory . "/" . $fileNameNew;
 
-    // Error: no file selected
     if (true) { // TODO add error if theres no file selected
         if (in_array($fileActualExtension, $allowedFileTypes)) {
             if ($fileError === 0) { // 0 means no error
@@ -43,7 +42,7 @@ function uploadFile() {
                     header("Location: ../uploadimage.php?upload=filesize_too_large");
                 }
             } else {
-                throw new Exception('Error uploading file.');
+                // throw new Exception('Error uploading file.');
                 header("Location: ../uploadimage.php?upload=error");
             }
         } else {
