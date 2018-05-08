@@ -21,37 +21,52 @@ class User {
     }
 
     // GETTERS
-    function getUsername() {
+    public function getUsername() {
         return $this->username;
     }
 
-    function getPassword() {
+    public function getPassword() {
         return $this->password;
     }
 
-    function getFirstName() {
+    public function getFirstName() {
         return $this->firstName;
     }
 
-    function getLastName() {
+    public function getLastName() {
         return $this->lastName;
     }
 
-    function getEmail() {
+    public function getEmail() {
         return $this->email;
     }
     
     // SETTERS
-    function setFirstName($firstName) {
+    public function setFirstName($firstName) {
         $this->firstName = $firstName;
     }
 
-    function setLastName($lastName) {
+    public function setLastName($lastName) {
         $this->lastName = $lastName;
     }
 
-    function setEmail($email) {
+    public function setEmail($email) {
         $this->email = $email;
+    }
+
+    // DB! DB! DB!
+    public function saveUserToDB($conn) {
+        $sql =  "INSERT INTO users(user_first_name, user_last_name, user_email, user_username, user_password) " .
+                "VALUES ('$this->firstName', '$this->lastName', '$this->email', '$this->username', '$this->password');";
+
+        mysqli_query($conn, $sql); // Insert data into the database
+    }
+
+    public function getUserFromDB($conn) {
+        $sql = "SELECT * FROM users WHERE user_username = '$this->username'";
+        $result = mysqli_query($conn, $sql);
+    
+        return $result;
     }
 }
 
