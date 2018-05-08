@@ -34,23 +34,23 @@ function signupUser($user) {
             $resultCheck = mysqli_num_rows($result);
 
             if ($resultCheck === 0) {
+                // Add user to DB
                 $user->saveUserToDB($conn);
                 
-                // go into the db and select user we just created so that we can use this information in our image table
-                $results = $user->getUserFromDB($conn);
-                
-                if (mysqli_num_rows($results) > 0 ) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        $id = $row['user_id'];
-
-                        // set status in profileimage for new user to 1
-                        $sql =  "INSERT INTO profileimage ('$id', 1) " .
-                                "VALUES ('$first', '$last', '$email', '$username', '$hashedPassword');";
-
-                        // successful signup
-                        header("Location: ../index.php?signup=success");
-                        exit();
-                    }
+                // Get user from DB and use this information in our image table
+                if ($user->checkIfUserExistsInDB($conn)) {
+                    $result = $user->getUserFromDB($conn);
+                    $row = mysqli_fetch_assoc($result);
+                    $id = $row['user_id'];
+                    
+                    // Set status in profileimage for new user to 1
+                    $sql =  "INSERT INTO profileimage (user_id, status) " .
+                            "VALUES ('$id', 1);";
+                    
+                    mysqli_query($conn, $sql);
+                            
+                    // successful signup
+                    header("Location: ../index.php?signup=success");
                 } else {
                     header("Location: ../signup.php?signup=user_not_found");
                 }
@@ -76,17 +76,6 @@ function containsOnlyLetters($value) {
     }
 }
 
-// function getUserFromDB($username) {
-//     $sql = "SELECT * FROM users WHERE user_username = '$username'";
-//     $result = mysqli_query($conn, $sql);
+function addImageToDB($user, $conn) {
 
-//     return $result;
-// }
-
-// function insertUserIntoDB($user) {
-//     $sql =  "INSERT INTO users (user_first_name, user_last_name, user_email, user_username, user_password) " .
-//             "VALUES ('$user->getFirstName', '$user->getLasttName', '$user->getEmail', '$user->getUsername', '$user->getPassword');";
-
-//     // insert data into the database
-//     mysqli_query($conn, $sql);
-// }
+}
