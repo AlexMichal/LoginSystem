@@ -4,7 +4,6 @@ require_once '../user.php';
 include_once 'dbh.inc.php';
 
 if (isset($_POST['submit'])) {
-    // TODO once SUCCESS we should change to INDEX
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $firstName = mysqli_real_escape_string($conn, $_POST['first_name']);
@@ -48,9 +47,9 @@ function signupUser($user) {
                             "VALUES ('$id', 1);";
                     
                     mysqli_query($conn, $sql);
-                            
-                    // successful signup
-                    header("Location: ../index.php?signup=success");
+
+                    // Finally, log the user in
+                    logTheUserIntoTheWebsite($user, $conn);        
                 } else {
                     header("Location: ../signup.php?signup=user_not_found");
                 }
@@ -76,6 +75,37 @@ function containsOnlyLetters($value) {
     }
 }
 
-function addImageToDB($user, $conn) {
+function logTheUserIntoTheWebsite($user, $conn) {
+    // Check for errors: Starting with if inputs are empty
+    if (!empty($user->getUsername()) && !empty($user->getPassword())) {
+        $result = $user->getUserFromDB($conn);
+        $resultCheck = mysqli_num_rows($result); // Returns how many rows found in the db using these params
+        
+        if ($resultCheck > 0) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                // De-hashing password and matching up the password with the db password
+                //$hashedPasswordCheck = password_verify($password, $row['user_password']);
+                $hashedPasswordCheck = ($user->getPassword() === $row['user_password']);
 
+                if ($hashedPasswordCheck == true) {
+                    $_SESSION['u_id'] = $row['user_id'];
+                    $_SESSION['u_first_name'] = $row['user_first_name'];
+                    $_SESSION['u_last_name'] = $row['user_last_name'];
+                    $_SESSION['u_email'] = $row['user_email'];
+                    $_SESSION['u_username'] = $row['user_username'];
+
+                    // Successful signup
+                    header("Location: ../index.php?signup=success");
+                } elseif ($hashedPasswordCheck == false) {
+                    header("Location: ../index.php?login=invalid_password");
+                } else {
+                    header("Location: ../index.php?login=error");
+                }
+            }
+        } else {
+            header("Location: ../index.php?login=error");
+        }
+    } else {
+        header("Location: ../index.php?login=empty");
+    }
 }
