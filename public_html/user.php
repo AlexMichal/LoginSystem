@@ -1,5 +1,4 @@
 <?php
-
 // TODO hash password
 class User {
     private $username;
@@ -68,6 +67,15 @@ class User {
     
         return $result;
     }
-}
 
+    public function checkIfUserExistsInDB($conn) {
+        $queryResult = $this->getUserFromDB($conn);
+    
+        if (mysqli_num_rows($queryResult) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 ?>
