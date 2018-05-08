@@ -55,7 +55,6 @@
                         
                             <button class="form-control nav-item btn btn-primary btn-sm nav_button" type="submit" name="submit">Login</button>
                             <a class="nav-item btn btn-primary btn-sm nav_button" id="nav_signup_btn" href="signup.php" role="button">Sign up</a>
-                            <!-- TODO ask justin about having a link in the form -->
                         </ul>
                     </form>
                 <?php
