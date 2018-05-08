@@ -3,6 +3,8 @@
 require_once '../user.php';
 include_once 'dbh.inc.php';
 
+session_start(); // Starts session inside the website
+
 if (isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
