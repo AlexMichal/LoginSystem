@@ -12,6 +12,7 @@ include_once 'header.php';
                 include 'includes/dbh.inc.php'; 
 
                 $loggedInUserId = $_SESSION['u_id'];
+                $loggedInUsername = $_SESSION['u_username'];
                 $sql = "SELECT * FROM users WHERE user_id = '$loggedInUserId'";
                 $result = mysqli_query($conn, $sql);
                 
@@ -22,8 +23,8 @@ include_once 'header.php';
                         
                         while ($rowImage = mysqli_fetch_assoc($resultImage)) {
                             echo '<div class="">';
-                            if ($rowImage['status'] === 0) { // 0 == We've already uploaded an image (so display it)
-                                echo '<img style="width: 100%" src="uploads/profile" . $id . ".png">';
+                            if ($rowImage['status'] == 1) { // 1 == We've already uploaded an image (so display it)
+                                echo '<img style="width: 100%" src="uploads/' . $loggedInUsername . '/profile_image_' . $loggedInUsername .'.jpg">';
                             } else {
                                 echo '<img style="width: 100%" src="assets/defaultprofilepic.png">'; // Default
                             }
