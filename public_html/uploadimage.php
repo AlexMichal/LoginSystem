@@ -11,25 +11,22 @@ include_once 'header.php';
             if (isset($_SESSION['u_id'])) {
                 include 'includes/dbh.inc.php'; 
 
-                $sql = "SELECT * FROM users";
+                $loggedInUserId = $_SESSION['u_id'];
+                $sql = "SELECT * FROM users WHERE user_id = '$loggedInUserId'";
                 $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) { // Any more results than 0
+                
+                if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        // get user id of the person inside the user table
-                        $id = $row['user_id'];
-                        $sqlImage = "SELECT * FROM profileimage WHERE user_id='$id'";
+                        $sqlImage = "SELECT * FROM profileimage WHERE user_id='$loggedInUserId'";
                         $resultImage = mysqli_query($conn, $sqlImage);
-
+                        
                         while ($rowImage = mysqli_fetch_assoc($resultImage)) {
-                            echo "<div>";
-                                if ($rowImage['status'] === 0) { // then we've already uploaded an image
-                                    echo "<img src='uploads/profile" . $id . ".png'>";
-                                } else {
-                                    // default
-                                    echo "<img src='assets/defaultprofilepic.png'>";
-                                }
-                                echo $row['user_username'];
+                            echo '<div class="">';
+                            if ($rowImage['status'] === 0) { // 0 == We've already uploaded an image (so display it)
+                                echo '<img style="width: 100%" src="uploads/profile" . $id . ".png">';
+                            } else {
+                                echo '<img style="width: 100%" src="assets/defaultprofilepic.png">'; // Default
+                            }
                             echo "</div>";
                         }
                     }
