@@ -25,7 +25,8 @@ function uploadFile() {
     $fileActualExtension = strtolower(end($fileExtension)); // end: get last piece of information from array
     $validFileSize = "2000000";
     $allowedFileTypes = array('jpg', 'jpeg', 'png');
-    $fileNameNew = uniqid('', true) . "." . $fileActualExtension; // create a unique number in microseconds and then append the file extension to it77
+    // TODO CHANGE BACK TO THIS: $fileNameNew = uniqid('', true) . "." . $fileActualExtension; // create a unique number in microseconds and then append the file extension to it
+    $fileNameNew = "profile_image_" . $_SESSION['u_username'] . "." . $fileActualExtension;
     $fileDestination = $fileDirectory . "/" . $fileNameNew;
 
     if (true) { // TODO add error if theres no file selected
