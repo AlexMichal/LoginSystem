@@ -65,3 +65,9 @@
     </nav>
 </header>
 <main>
+
+<?php
+function out($var) {
+    echo $var; exit();
+}
+?>
