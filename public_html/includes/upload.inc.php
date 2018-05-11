@@ -37,6 +37,8 @@ function uploadFile() {
     
                     move_uploaded_file($fileTmpFileLocation, $fileDestination);
     
+                    changeStatusToUploaded();
+
                     header("Location: ../uploadimage.php?upload=success");
                 } else {
                     // throw new Exception('Filesize too large.');
@@ -56,7 +58,16 @@ function uploadFile() {
 }
 
 function createDirectory($fileDirectory) {
-    if (file_exists($fileDirectory)) mkdir($fileDirectory, 0777, true);
+    if (!file_exists($fileDirectory)) mkdir($fileDirectory, 0777, true);
+}
+
+function changeStatusToUploaded() {
+    include 'dbh.inc.php';
+    
+    $userId = $_SESSION['u_id'];
+    $sql = "UPDATE profileimage SET status = 1 WHERE user_id = '$userId';";
+
+    $result = mysqli_query($conn, $sql);
 }
 
 // BACK BUTTON
