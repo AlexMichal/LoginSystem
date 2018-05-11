@@ -44,9 +44,9 @@ function signupUser($user) {
                     $row = mysqli_fetch_assoc($result);
                     $id = $row['user_id'];
                     
-                    // Set status in profileimage for new user to 1
+                    // Set status in profileimage for new user to 0 (0 = no image uploaded)
                     $sql =  "INSERT INTO profileimage (user_id, status) " .
-                            "VALUES ('$id', 1);";
+                            "VALUES ('$id', 0);";
                     
                     mysqli_query($conn, $sql);
 
