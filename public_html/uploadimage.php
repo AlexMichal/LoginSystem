@@ -23,9 +23,11 @@ include_once 'header.php';
                         // $fileExtension = preg_match("/^jpg$|^png$|^jpeg$/");
 
                         while ($rowImage = mysqli_fetch_assoc($resultImage)) {
+                            $filename = $rowImage['filename'];
+
                             echo '<div class="upload_image_image">';
                             if ($rowImage['status'] == 1) { // 1 == We've already uploaded an image (so display it)
-                                echo '<img style="width: 100%; height: 100%" src="uploads/' . $loggedInUsername . '/profile_image_' . $loggedInUsername .'.jpg">';
+                                echo '<img style="width: 100%; height: 100%" src="uploads/' . $loggedInUsername . '/' . $filename . '">';
                             } else {
                                 echo '<img style="width: 100%; height: 100% src="assets/defaultprofilepic.png">'; // Default
                             }

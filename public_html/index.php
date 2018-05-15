@@ -41,8 +41,10 @@
 
                             while ($sqlRow = mysqli_fetch_assoc($sqlResult)) {
                                 $status = $sqlRow['status'];
+                                $filename = $sqlRow['filename'];
+
                                 if ($status == 1) {
-                                    echo '<img class="img-wrap" src="' . $imagePath . '/profile_image_' . $username . '.jpg" alt="Image of User" class="">';  
+                                    echo '<img class="img-wrap" src="' . $imagePath . '/' . $filename . '" alt="Image of User" class="">';  
                                 } else {
                                     echo '<img style="" src="assets/defaultprofilepic.png" alt="Default Image of User" class="">';  
                                 }
