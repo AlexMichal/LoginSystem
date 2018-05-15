@@ -21,77 +21,73 @@
 </script>
 <section class="main_container">
     <div class="container">
-        <?php // If logged in then do stuff
-        if (isset($_SESSION['u_id'])) {
+        <?php 
+        if (isset($_SESSION['u_id'])) { // If logged in then do stuff
+            include_once 'includes/dbh.inc.php'; // Open the DB
         ?>
-        <div id="index_top" class="display-flex">
-            <!-- PROFILE PIC -->
-            <div id="index_profile_pic" class="item index flex-none">
-                <a href="uploadimage.php">
-                    <?php
-                    $path = "../uploads/" . $_SESSION['u_username'] . "/";
-                    $imagePath = "";
+            <div id="index_top" class="display-flex">
+                <!-- PROFILE PIC -->
+                <div id="index_profile_pic" class="item index flex-none">
+                    <a href="uploadimage.php">
+                        <div>
+                            <?php
+                            $userId = $_SESSION['u_id'];
+                            $sqlProfileImage = "SELECT status FROM profileimage WHERE user_id = '$userId'";
+                            $username = $_SESSION['u_username'];
+                            $imagePath = "uploads/" . $username . "/";
 
-                    if (file_exists($path)) {
-                        $latest_ctime = 0;
-                        $latest_filename = '';    
-                        $d = dir($path);
-                        $x = "5adea53a953573.03704107.jpg";
-                        // while (false !== ($entry = $d->read())) {
-                        //     $filepath = "{$path}/{$entry}";
-                        //     // could do also other checks than just checking whether the entry is a file
-                        //     if (is_file($filepath) && filectime($filepath) > $latest_ctime) {
-                        //         $latest_ctime = filectime($filepath);
-                        //         $latest_filename = $entry;
-                        //     }
-                        // }
-                        $imagePatch = $x;
-                    } else { // use default image
-                        $imagePath = "assets/defaultprofilepic.png";
-                    }
-                    
-                    echo '<img src="'. $imagePath . '" alt="Image of User" class="">';  
+                            $sqlQuery = "SELECT * FROM profileimage WHERE user_id='$userId'";
+                            $sqlResult = mysqli_query($conn, $sqlQuery);
+
+                            while ($sqlRow = mysqli_fetch_assoc($sqlResult)) {
+                                $status = $sqlRow['status'];
+                                if ($status == 1) {
+                                    echo '<img class="img-wrap" src="' . $imagePath . '/profile_image_' . $username . '.jpg" alt="Image of User" class="">';  
+                                } else {
+                                    echo '<img style="" src="assets/defaultprofilepic.png" alt="Default Image of User" class="">';  
+                                }
+                            }
+                            ?>
+                        </div>
+                    </a>
+                </div>
+                
+                <div id="index_profile_info" class="item flex-auto">
+                    <h2>
+                    <?php 
+                        echo $_SESSION['u_first_name'] . " " . $_SESSION['u_last_name'];;
                     ?>
-                    
-                </a>
-            </div>
-            
-            <div id="index_profile_info" class="item flex-auto">
-                <h2><?php 
-                    echo $_SESSION['u_first_name'] . " " . $_SESSION['u_last_name'];;
-                ?>
-                </h2>
+                    </h2>
 
-            </div>
-        </div>
-        <!-- SEPARATOR -->
-        <hr>
-
-        <!-- POST A NEW MESSAGE -->
-        <div class="row">
-            <div id="index_message_form" class="col col-md-5.5 index">
-                <form id="message_form" class="form-group" action="includes/post.inc.php" method="POST">
-                    <!-- <label for="comment">Comment:</label> -->
-                    <textarea id="message" class="form-control" rows="4" name="message" form="message_form"></textarea>
-                    <button class="btn" name="submit" type="submit">Post</button>
-                </form>
+                </div>
             </div>
 
-            <!-- FRIENDS LIST -->
-            <div id="index_friends_list" class="col col-md-5.5 index">
-                <?php
-                echo 'Friend 1<br />';
-                echo 'Friend 2<br />';
-                echo 'Friend 3<br />';
-                ?>
-            </div>
-        </div>
+            <!-- SEPARATOR -->
+            <hr>
 
-        <!-- POSTS (YOURS AND FRIENDS) -->
-        <div id="index_posts">
+            <!-- POST A NEW MESSAGE -->
+            <div class="row">
+                <div id="index_message_form" class="col col-md-5.5 index">
+                    <form id="message_form" class="form-group" action="includes/post.inc.php" method="POST">
+                        <!-- <label for="comment">Comment:</label> -->
+                        <textarea id="message" class="form-control" rows="4" name="message" form="message_form"></textarea>
+                        <button class="btn" name="submit" type="submit">Post</button>
+                    </form>
+                </div>
+
+                <!-- FRIENDS LIST -->
+                <div id="index_friends_list" class="col col-md-5.5 index">
+                    <?php
+                    echo 'Friend 1<br />';
+                    echo 'Friend 2<br />';
+                    echo 'Friend 3<br />';
+                    ?>
+                </div>
+            </div>
+
+            <!-- POSTS (YOURS AND FRIENDS) -->
+            <div id="index_posts">
             <?php
-                include_once 'includes/dbh.inc.php'; // Open the DB
-
                 $userId = $_SESSION['u_id'];  
                 $sql =  "SELECT message_post, message_timestamp " . 
                         "FROM messages " .
@@ -123,7 +119,7 @@
             } else {
                 echo "<h4>You are not logged in.</h4>";
             }
-            ?>
+        ?>
     </div>
 </section>
 
