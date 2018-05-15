@@ -1,5 +1,4 @@
 <?php
-
 session_start(); // resume current session
 
 // Upload Image button
@@ -37,7 +36,7 @@ function uploadFile() {
     
                     move_uploaded_file($fileTmpFileLocation, $fileDestination);
     
-                    changeStatusToUploaded();
+                    changeStatusAndFilenameInDB($fileNameNew);
 
                     header("Location: ../uploadimage.php?upload=success");
                 } else {
@@ -61,11 +60,11 @@ function createDirectory($fileDirectory) {
     if (!file_exists($fileDirectory)) mkdir($fileDirectory, 0777, true);
 }
 
-function changeStatusToUploaded() {
+function changeStatusAndFilenameInDB($filename) {
     include 'dbh.inc.php';
     
     $userId = $_SESSION['u_id'];
-    $sql = "UPDATE profileimage SET status = 1 WHERE user_id = '$userId';";
+    $sql = "UPDATE profileimage SET status = 1, filename = '$filename' WHERE user_id = '$userId';";
 
     $result = mysqli_query($conn, $sql);
 }
