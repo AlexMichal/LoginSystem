@@ -49,9 +49,9 @@ function signupUser($user) {
                             "VALUES ('$id', 0, '');";
                     
                     mysqli_query($conn, $sql);
-
+                    header("Location: ../signup.php?signup=complete");
                     // Finally, log the user in
-                    logTheUserIntoTheWebsite($user, $conn);        
+                   // logTheUserIntoTheWebsite($user, $conn);        
                 } else {
                     header("Location: ../signup.php?signup=user_not_found");
                 }
