@@ -51,7 +51,7 @@ function signupUser($user) {
                     mysqli_query($conn, $sql);
 
                     // Finally, log the user in
-                    logTheUserIntoTheWebsite($user, $conn);        
+                    //logTheUserIntoTheWebsite($user, $conn);        
                 } else {
                     header("Location: ../signup.php?signup=user_not_found");
                 }
@@ -86,7 +86,6 @@ function logTheUserIntoTheWebsite($user, $conn) {
         if ($resultCheck > 0) {
             if ($row = mysqli_fetch_assoc($result)) {
                 // De-hashing password and matching up the password with the db password
-                //$hashedPasswordCheck = password_verify($password, $row['user_password']);
                 $hashedPasswordCheck = ($user->getPassword() === $row['user_password']);
 
                 if ($hashedPasswordCheck == true) {
