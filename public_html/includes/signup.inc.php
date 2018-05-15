@@ -39,11 +39,11 @@ function signupUser($user) {
                 $user->saveUserToDB($conn);
                 
                 // Get user from DB and use this information in our image table
-                if ($user->checkIfUserExistsInDB($conn)) {
-                    $result = $user->getUserFromDB($conn);
-                    $row = mysqli_fetch_assoc($result);
-                    $id = $row['user_id'];
-                    
+                //if ($user->checkIfUserExistsInDB($conn)) {
+                    // $result = $user->getUserFromDB($conn);
+                //    while ($row = mysqli_fetch_assoc($result)) {
+                //     $id = $row['user_id'];
+                //    }
                     // Set status in profileimage for new user to 0 (0 = no image uploaded)
                     //$sql =  "INSERT INTO profileimage (user_id, status, filename) " .
                     //        "VALUES ('$id', 0, '');";
@@ -52,9 +52,9 @@ function signupUser($user) {
                     header("Location: ../signup.php?signup=complete");
                     // Finally, log the user in
                    // logTheUserIntoTheWebsite($user, $conn);        
-                } else {
-                    header("Location: ../signup.php?signup=user_not_found");
-                }
+                //} else {
+                //    header("Location: ../signup.php?signup=user_not_found");
+                //}
             } else {
                 // User already exists in the DB
                 header("Location: ../signup.php?signup=user_taken");
