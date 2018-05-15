@@ -45,13 +45,13 @@ function signupUser($user) {
                     $id = $row['user_id'];
                     
                     // Set status in profileimage for new user to 0 (0 = no image uploaded)
-                    $sql =  "INSERT INTO profileimage (user_id, status) " .
-                            "VALUES ('$id', 0);";
+                    $sql =  "INSERT INTO profileimage (user_id, status, filename) " .
+                            "VALUES ('$id', 0, '');";
                     
                     mysqli_query($conn, $sql);
 
                     // Finally, log the user in
-                    //logTheUserIntoTheWebsite($user, $conn);        
+                    logTheUserIntoTheWebsite($user, $conn);        
                 } else {
                     header("Location: ../signup.php?signup=user_not_found");
                 }
