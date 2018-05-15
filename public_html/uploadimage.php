@@ -20,13 +20,14 @@ include_once 'header.php';
                     while ($row = mysqli_fetch_assoc($result)) {
                         $sqlImage = "SELECT * FROM profileimage WHERE user_id='$loggedInUserId'";
                         $resultImage = mysqli_query($conn, $sqlImage);
-                        
+                        // $fileExtension = preg_match("/^jpg$|^png$|^jpeg$/");
+
                         while ($rowImage = mysqli_fetch_assoc($resultImage)) {
-                            echo '<div class="">';
+                            echo '<div class="upload_image_image">';
                             if ($rowImage['status'] == 1) { // 1 == We've already uploaded an image (so display it)
-                                echo '<img style="width: 100%" src="uploads/' . $loggedInUsername . '/profile_image_' . $loggedInUsername .'.jpg">';
+                                echo '<img style="width: 100%; height: 100%" src="uploads/' . $loggedInUsername . '/profile_image_' . $loggedInUsername .'.jpg">';
                             } else {
-                                echo '<img style="width: 100%" src="assets/defaultprofilepic.png">'; // Default
+                                echo '<img style="width: 100%; height: 100% src="assets/defaultprofilepic.png">'; // Default
                             }
                             echo "</div>";
                         }
@@ -58,5 +59,6 @@ include_once 'header.php';
     </div>
 </section>
 <?php
+
 include_once 'footer.php';
 ?>
