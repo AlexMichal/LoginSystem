@@ -18,13 +18,7 @@ if (isset($_POST['submit'])) {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $newUser = new User($username, $password, $firstName, $lastName, $email);
 
-        try {
-            signupUser($newUser);
-        } catch(Exception $e) {
-            $msg = $e->getMessage();
-            error_log($msg, 3, "php.log");
-            exit;
-        }
+        signupUser($newUser);
     }
 } else {
     header("Location: ../signup.php?signup=failed");
@@ -51,10 +45,10 @@ function signupUser($user) {
                     $id = $row['user_id'];
                     
                     // Set status in profileimage for new user to 0 (0 = no image uploaded)
-                    $sql =  "INSERT INTO profileimage (user_id, status, filename) " .
-                            "VALUES ('$id', 0, '');";
+                    //$sql =  "INSERT INTO profileimage (user_id, status, filename) " .
+                    //        "VALUES ('$id', 0, '');";
                     
-                    mysqli_query($conn, $sql);
+                    //mysqli_query($conn, $sql);
                     header("Location: ../signup.php?signup=complete");
                     // Finally, log the user in
                    // logTheUserIntoTheWebsite($user, $conn);        
