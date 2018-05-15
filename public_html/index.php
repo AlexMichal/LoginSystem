@@ -35,19 +35,18 @@
                             $sqlProfileImage = "SELECT status FROM profileimage WHERE user_id = '$userId'";
                             $username = $_SESSION['u_username'];
                             $imagePath = "uploads/" . $username . "/";
-
                             $sqlQuery = "SELECT * FROM profileimage WHERE user_id='$userId'";
                             $sqlResult = mysqli_query($conn, $sqlQuery);
 
                             while ($sqlRow = mysqli_fetch_assoc($sqlResult)) {
                                 $status = $sqlRow['status'];
                                 $filename = $sqlRow['filename'];
+                            }
 
-                                if ($status == 1) {
-                                    echo '<img class="img-wrap" src="' . $imagePath . '/' . $filename . '" alt="Image of User" class="">';  
-                                } else {
-                                    echo '<img style="" src="assets/defaultprofilepic.png" alt="Default Image of User" class="">';  
-                                }
+                            if ($status == 1) {
+                                echo '<img class="img-wrap" src="' . $imagePath . '/' . $filename . '" alt="Image of User" class="">';  
+                            } else {
+                                echo '<img style="" src="assets/defaultprofilepic.png" alt="Default Image of User" class="">';  
                             }
                             ?>
                         </div>
