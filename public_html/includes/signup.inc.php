@@ -41,8 +41,10 @@ function signupUser($user) {
                 // Get user from DB and use this information in our image table
                 if ($user->checkIfUserExistsInDB($conn)) {
                     $result = $user->getUserFromDB($conn);
-                    $row = mysqli_fetch_assoc($result);
-                    $id = $row['user_id'];
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['user_id'];
+                    }
                     
                     // Set status in profileimage for new user to 0 (0 = no image uploaded)
                     $sql =  "INSERT INTO profileimage (user_id, status, filename) " .
@@ -53,11 +55,11 @@ function signupUser($user) {
                     // Finally, log the user in
                     logTheUserIntoTheWebsite($user, $conn);
                 } else {
-                    header("Location: ../signup.php?signup=user_not_found");
+                    header("Location: ../signup.php?signup=user_not_found");exit();
                 }
             } else {
                 // User already exists in the DB
-                header("Location: ../signup.php?signup=user_taken");
+                header("Location: ../signup.php?signup=user_taken");exit();
             }
         } else {
             // E-mail doesn't follow "xxx@xxx.com" format
@@ -96,19 +98,20 @@ function logTheUserIntoTheWebsite($user, $conn) {
                     $_SESSION['u_username'] = $row['user_username'];
 
                     // Successful signup
-                    header("Location: ../index.php?signup=success");
+                    header("Location: ../index.php?signup=success");exit();
                 } elseif ($hashedPasswordCheck == false) {
-                    header("Location: ../index.php?login=invalid_password");
+                    header("Location: ../index.php?login=invalid_password");exit();
                 } else {
-                    header("Location: ../index.php?login=error");
+                    header("Location: ../index.php?login=error");exit();
                 }
             } else {
-                header("Location: ../index.php?login=error");
+                header("Location: ../index.php?login=error");exit();
             }
         } else {
-            header("Location: ../index.php?login=error");
+            header("Location: ../index.php?login=error");exit();
         }
     } else {
         header("Location: ../index.php?login=empty");
+        exit();
     }
 }
