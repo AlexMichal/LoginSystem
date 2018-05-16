@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../user.php';
+// require_once '../user.php';
 include_once 'dbh.inc.php';
 
 session_start(); // Starts session inside the website
