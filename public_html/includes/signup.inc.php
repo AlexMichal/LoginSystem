@@ -18,8 +18,6 @@ if (isset($_POST['submit'])) {
         $newUser = new User($username, $password, $firstName, $lastName, $email);
 
         signupUser($newUser);
-        
-        header("Location: ../index.php?signup=empty_inputs");
     }
 } else {
     header("Location: ../signup.php?signup=failed");
