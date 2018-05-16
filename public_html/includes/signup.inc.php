@@ -1,14 +1,10 @@
 <?php 
-
-
 include_once 'dbh.inc.php';
 require('user.php');
 
 session_start(); // Starts session inside the website
 
 if (isset($_POST['submit'])) {
-    
-
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $firstName = mysqli_real_escape_string($conn, $_POST['first_name']);
@@ -19,19 +15,13 @@ if (isset($_POST['submit'])) {
         header("Location: ../signup.php?signup=empty_inputs");
     } else {
         //$password = password_hash($password, PASSWORD_DEFAULT);
-        try {
-            $newUser = new User($username, $password, $firstName, $lastName, $email);
-        } catch (Exception $e) {
-            echo "ERROR" . $e;
-            exit();
-        }
+        $newUser = new User($username, $password, $firstName, $lastName, $email);
+
         signupUser($newUser);
-        echo "ERRORzzzzzzzzzzzzzzzzzzze";
-        exit();
+        
         header("Location: ../index.php?signup=empty_inputs");
     }
-} else {echo "ERRasdasdasdasd";
-    exit();
+} else {
     header("Location: ../signup.php?signup=failed");
 }
 
@@ -65,13 +55,13 @@ function signupUser($user) {
 
                     // Finally, log the user in
                     logTheUserIntoTheWebsite($user, $conn);
-                    header("Location: ../signup.php?signup=success");exit();
+                    header("Location: ../signup.php?signup=success");
                 } else {
-                    header("Location: ../signup.php?signup=user_not_found");exit();
+                    header("Location: ../signup.php?signup=user_not_found");
                 }
             } else {
                 // User already exists in the DB
-                header("Location: ../signup.php?signup=user_taken");exit();
+                header("Location: ../signup.php?signup=user_taken");
             }
         } else {
             // E-mail doesn't follow "xxx@xxx.com" format
@@ -91,39 +81,39 @@ function containsOnlyLetters($value) {
     }
 }
 
-// function logTheUserIntoTheWebsite($user, $conn) {
-//     // Check for errors: Starting with if inputs are empty
-//     if (!empty($user->getUsername()) && !empty($user->getPassword())) {
-//         $result = $user->getUserFromDB($conn);
-//         $resultCheck = mysqli_num_rows($result); // Returns how many rows found in the db using these params
+function logTheUserIntoTheWebsite($user, $conn) {
+    // Check for errors: Starting with if inputs are empty
+    if (!empty($user->getUsername()) && !empty($user->getPassword())) {
+        $result = $user->getUserFromDB($conn);
+        $resultCheck = mysqli_num_rows($result); // Returns how many rows found in the db using these params
         
-//         if ($resultCheck > 0) {
-//             if ($row = mysqli_fetch_assoc($result)) {
-//                 // De-hashing password and matching up the password with the db password
-//                 $hashedPasswordCheck = ($user->getPassword() === $row['user_password']);
+        if ($resultCheck > 0) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                // De-hashing password and matching up the password with the db password
+                $hashedPasswordCheck = ($user->getPassword() === $row['user_password']);
 
-//                 if ($hashedPasswordCheck == true) {
-//                     $_SESSION['u_id'] = $row['user_id'];
-//                     $_SESSION['u_first_name'] = $row['user_first_name'];
-//                     $_SESSION['u_last_name'] = $row['user_last_name'];
-//                     $_SESSION['u_email'] = $row['user_email'];
-//                     $_SESSION['u_username'] = $row['user_username'];
+                if ($hashedPasswordCheck == true) {
+                    $_SESSION['u_id'] = $row['user_id'];
+                    $_SESSION['u_first_name'] = $row['user_first_name'];
+                    $_SESSION['u_last_name'] = $row['user_last_name'];
+                    $_SESSION['u_email'] = $row['user_email'];
+                    $_SESSION['u_username'] = $row['user_username'];
 
-//                     // Successful signup
-//                     header("Location: ../index.php?signup=success");exit();
-//                 } elseif ($hashedPasswordCheck == false) {
-//                     header("Location: ../index.php?login=invalid_password");exit();
-//                 } else {
-//                     header("Location: ../index.php?login=error");exit();
-//                 }
-//             } else {
-//                 header("Location: ../index.php?login=error");exit();
-//             }
-//         } else {
-//             header("Location: ../index.php?login=error");exit();
-//         }
-//     } else {
-//         header("Location: ../index.php?login=empty");
-//         exit();
-//     }
-// }
+                    // Successful signup
+                    header("Location: ../index.php?signup=success");exit();
+                } elseif ($hashedPasswordCheck == false) {
+                    header("Location: ../index.php?login=invalid_password");exit();
+                } else {
+                    header("Location: ../index.php?login=error");exit();
+                }
+            } else {
+                header("Location: ../index.php?login=error");exit();
+            }
+        } else {
+            header("Location: ../index.php?login=error");exit();
+        }
+    } else {
+        header("Location: ../index.php?login=empty");
+        exit();
+    }
+}
