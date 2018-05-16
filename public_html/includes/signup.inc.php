@@ -27,7 +27,7 @@ function signupUser($user) {
     include 'dbh.inc.php';
 
     // Check if input chars are valid
-    if (containsOnlyLetters($user->getFirstName()) && containsOnlyLetters($user->getLastName())) {
+    if (containsOnlyLettersAndSpaces($user->getFirstName()) && containsOnlyLettersAndSpaces($user->getLastName())) {
         // Check if e-mail is valid
         if (filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
             $result = $user->getUserFromDB($conn);
@@ -70,9 +70,9 @@ function signupUser($user) {
     }
 }
 
-function containsOnlyLetters($value) {
+function containsOnlyLettersAndSpaces($value) {
     // preg_match: value contains certain characters in a string
-    if (preg_match("/^[a-zA-Z]*$/", $value)) {
+    if (preg_match("/^[a-zA-Z ]*$/", $value)) {
         return true;
     } else {
         return false;
