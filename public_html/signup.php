@@ -11,9 +11,9 @@
         </div>
 
         <form id="signup_form" class="form-group" action="includes/signup.inc.php" method="POST">
-            <input type="text" name="first_name" placeholder="first name" class="input form-control" value="TEMP" required>
-            <input type="text" name="last_name" placeholder="last name" class="input form-control" value="TEMP" required>
-            <input type="text" name="email" placeholder="e-mail" class="input form-control" value="asdf@asdf.com" required>
+            <input type="text" name="first_name" placeholder="first name" class="input form-control" value="" required>
+            <input type="text" name="last_name" placeholder="last name" class="input form-control" value="" required>
+            <input type="text" name="email" placeholder="e-mail" class="input form-control" value="" required>
             <input type="text" name="username" placeholder="username" class="input form-control" required>
             <input type="password" name="password" placeholder="password" class="input form-control" required>
             <small id="signup_error" class="form-text text-alert"></small>
