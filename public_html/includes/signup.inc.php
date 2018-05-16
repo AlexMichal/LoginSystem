@@ -1,11 +1,13 @@
 <?php 
 
-require_once '../user.php';
+
 include_once 'dbh.inc.php';
 
 session_start(); // Starts session inside the website
 
 if (isset($_POST['submit'])) {
+    require_once '../user.php';
+    
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $firstName = mysqli_real_escape_string($conn, $_POST['first_name']);
@@ -16,7 +18,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../signup.php?signup=empty_inputs");
     } else {
         //$password = password_hash($password, PASSWORD_DEFAULT);
-        //$newUser = new User($username, $password, $firstName, $lastName, $email);
+        $newUser = new User($username, $password, $firstName, $lastName, $email);
 
         //signupUser($newUser);
 
