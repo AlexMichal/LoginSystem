@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../signup.php?signup=empty_inputs");
     } else {
         //$password = password_hash($password, PASSWORD_DEFAULT);
-        $newUser = new User($username, $password, $firstName, $lastName, $email);
+        //$newUser = new User($username, $password, $firstName, $lastName, $email);
 
         //signupUser($newUser);
 
