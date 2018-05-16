@@ -19,8 +19,12 @@ if (isset($_POST['submit'])) {
         header("Location: ../signup.php?signup=empty_inputs");
     } else {
         //$password = password_hash($password, PASSWORD_DEFAULT);
-        $newUser = new User($username, $password, $firstName, $lastName, $email);
-
+        try {
+            $newUser = new User($username, $password, $firstName, $lastName, $email);
+        } catch (Exception $e) {
+            echo "ERROR" . $e;
+            exit();
+        }
         //signupUser($newUser);
 
         header("Location: ../index.php?signup=empty_inputs");
