@@ -2,7 +2,7 @@
 
 
 include_once 'dbh.inc.php';
-include_once('user.php');
+require('user.php');
 
 session_start(); // Starts session inside the website
 
