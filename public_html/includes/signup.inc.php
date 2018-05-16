@@ -1,5 +1,6 @@
 <?php 
 if (isset($_POST['submit'])) {
+    
     // TODO once SUCCESS we should change to INDEX
     include_once 'dbh.inc.php';
 
@@ -44,37 +45,21 @@ if (isset($_POST['submit'])) {
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
                     // insert the user into the database
-                    $sql =  "INSERT INTO users (user_first_name, user_last_name, user_email, user_username, user_password) " .
+                    $sql =  "INSERT INTO users (user_first_name, user_last_name, user_email, user_username, user_password)" .
                             "VALUES ('$first', '$last', '$email', '$username', '$hashedPassword');";
                     
                     // insert data into the database
                     mysqli_query($conn, $sql);
                     
-                    // go into the db and select user we just created so that we can use this information in our image tbl
-                    $sql = "SELECT * FROM users WHERE user_username = '$username' AND user_first_name = '$first'";
-                    $results = mysqli_query($conn, $sql); // run the query
-                    
-                    if (mysqli_num_rows($results) > 0 ) {
-                        while($row = mysqli_fetch_assoc($result)) {
-                            $id = $row['user_id'];
-
-                            // set status in profileimage for new user to 1
-                            $sql =  "INSERT INTO profileimage ('$id', 1) " .
-                                    "VALUES ('$first', '$last', '$email', '$username', '$hashedPassword');";
-
-                            // successful signup
-                            header("Location: ../index.php?signup=success");
-                            exit();
-                        }
-                    } else {
-                        header("Location: ../signup.php?signup=usernotfound");
-                    }
+                    // successful signup
+                    header("Location: ../signup.php?signup=success");
+                    exit();
                 }
             }   
         }
     }
 
 } else {
-    header("Location: ../signup.php?signup=failed");
+    header("Location: ../signup.php");
     exit(); // closes off and stops the script from running
 }
