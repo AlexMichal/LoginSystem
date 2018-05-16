@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
             echo "ERROR" . $e;
             exit();
         }
-        //signupUser($newUser);
+        signupUser($newUser);
         echo "ERRORzzzzzzzzzzzzzzzzzzze";
         exit();
         header("Location: ../index.php?signup=empty_inputs");
@@ -35,52 +35,52 @@ if (isset($_POST['submit'])) {
     header("Location: ../signup.php?signup=failed");
 }
 
-// function signupUser($user) {
-//     include 'dbh.inc.php';
+function signupUser($user) {
+    include 'dbh.inc.php';
 
-//     // Check if input chars are valid
-//     if (containsOnlyLetters($user->getFirstName()) && containsOnlyLetters($user->getLastName())) {
-//         // Check if e-mail is valid
-//         if (filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
-//             $result = $user->getUserFromDB($conn);
-//             $resultCheck = mysqli_num_rows($result);
+    // Check if input chars are valid
+    if (containsOnlyLetters($user->getFirstName()) && containsOnlyLetters($user->getLastName())) {
+        // Check if e-mail is valid
+        if (filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
+            $result = $user->getUserFromDB($conn);
+            $resultCheck = mysqli_num_rows($result);
 
-//             if ($resultCheck === 0) {
-//                 // Add user to DB
-//                 $user->saveUserToDB($conn);
+            if ($resultCheck === 0) {
+                // Add user to DB
+                $user->saveUserToDB($conn);
                 
-//                 // Get user from DB and use this information in our image table
-//                 if ($user->checkIfUserExistsInDB($conn)) {
-//                     $result = $user->getUserFromDB($conn);
+                // Get user from DB and use this information in our image table
+                if ($user->checkIfUserExistsInDB($conn)) {
+                    $result = $user->getUserFromDB($conn);
 
-//                     while ($row = mysqli_fetch_assoc($result)) {
-//                         $id = $row['user_id'];
-//                     }
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row['user_id'];
+                    }
                     
-//                     // Set status in profileimage for new user to 0 (0 = no image uploaded)
-//                     $sql =  "INSERT INTO profileimage (user_id, status, filename) " .
-//                             "VALUES ('$id', 0, '');";
+                    // Set status in profileimage for new user to 0 (0 = no image uploaded)
+                    $sql =  "INSERT INTO profileimage (user_id, status, filename) " .
+                            "VALUES ('$id', 0, '');";
                     
-//                     mysqli_query($conn, $sql);
+                    mysqli_query($conn, $sql);
 
-//                     // Finally, log the user in
-//                     logTheUserIntoTheWebsite($user, $conn);
-//                     header("Location: ../signup.php?signup=success");exit();
-//                 } else {
-//                     header("Location: ../signup.php?signup=user_not_found");exit();
-//                 }
-//             } else {
-//                 // User already exists in the DB
-//                 header("Location: ../signup.php?signup=user_taken");exit();
-//             }
-//         } else {
-//             // E-mail doesn't follow "xxx@xxx.com" format
-//             header("Location: ../signup.php?signup=email");
-//         } 
-//     } else { // First and Last names are invalid
-//         header("Location: ../signup.php?signup=invalid");
-//     }
-// }
+                    // Finally, log the user in
+                    logTheUserIntoTheWebsite($user, $conn);
+                    header("Location: ../signup.php?signup=success");exit();
+                } else {
+                    header("Location: ../signup.php?signup=user_not_found");exit();
+                }
+            } else {
+                // User already exists in the DB
+                header("Location: ../signup.php?signup=user_taken");exit();
+            }
+        } else {
+            // E-mail doesn't follow "xxx@xxx.com" format
+            header("Location: ../signup.php?signup=email");
+        } 
+    } else { // First and Last names are invalid
+        header("Location: ../signup.php?signup=invalid");
+    }
+}
 
 function containsOnlyLetters($value) {
     // preg_match: value contains certain characters in a string
