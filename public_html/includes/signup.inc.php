@@ -53,7 +53,8 @@ function signupUser($user) {
                     mysqli_query($conn, $sql);
 
                     // Finally, log the user in
-                    logTheUserIntoTheWebsite($user, $conn);
+                    //logTheUserIntoTheWebsite($user, $conn);
+                    header("Location: ../signup.php?signup=success");exit();
                 } else {
                     header("Location: ../signup.php?signup=user_not_found");exit();
                 }
