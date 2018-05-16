@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $newUser = new User($username, $password, $firstName, $lastName, $email);
 
-        signupUser($newUser);
+        //signupUser($newUser);
     }
 } else {
     header("Location: ../signup.php?signup=failed");
