@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     } else {
         //$password = password_hash($password, PASSWORD_DEFAULT);
         try {
-            //$newUser = new User($username, $password, $firstName, $lastName, $email);
+            $newUser = new User($username, $password, $firstName, $lastName, $email);
         } catch (Exception $e) {
             echo "ERROR" . $e;
             exit();
