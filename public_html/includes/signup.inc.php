@@ -26,10 +26,12 @@ if (isset($_POST['submit'])) {
             exit();
         }
         //signupUser($newUser);
-
+        echo "ERRORzzzzzzzzzzzzzzzzzzze";
+        exit();
         header("Location: ../index.php?signup=empty_inputs");
     }
-} else {
+} else {echo "ERRasdasdasdasd";
+    exit();
     header("Location: ../signup.php?signup=failed");
 }
 
