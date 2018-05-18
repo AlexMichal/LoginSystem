@@ -1,6 +1,6 @@
 <?php
-    // phpinfo(); exit;
-    include_once 'header.php';
+// phpinfo(); exit;
+include_once 'header.php';
 ?>
  <!-- jQuery script for loading more posts -->
 <script>
@@ -27,29 +27,28 @@
         ?>
             <div id="index_top" class="display-flex">
                 <!-- PROFILE PIC -->
-                <div id="index_profile_pic" class="item index flex-none">
+                <div class="item index flex-none profile-image-container">
                     <a href="uploadimage.php">
-                        <div>
-                            <?php
-                            $userId = $_SESSION['u_id'];
-                            $sqlProfileImage = "SELECT status FROM profileimage WHERE user_id = '$userId'";
-                            $username = $_SESSION['u_username'];
-                            $imagePath = "uploads/" . $username . "/";
-                            $sqlQuery = "SELECT * FROM profileimage WHERE user_id='$userId'";
-                            $sqlResult = mysqli_query($conn, $sqlQuery);
+                        <?php
+                        $userId = $_SESSION['u_id'];
+                        $sqlProfileImage = "SELECT status FROM profileimage WHERE user_id = '$userId'";
+                        $username = $_SESSION['u_username'];
+                        $imagePath = "uploads/" . $username . "/";
+                        $sqlQuery = "SELECT * FROM profileimage WHERE user_id='$userId'";
+                        $sqlResult = mysqli_query($conn, $sqlQuery);
 
-                            while ($sqlRow = mysqli_fetch_assoc($sqlResult)) {
-                                $status = $sqlRow['status'];
-                                $filename = $sqlRow['filename'];
-                            }
+                        while ($sqlRow = mysqli_fetch_assoc($sqlResult)) {
+                            $profileImageAvailable = $sqlRow['status'];
+                            $filename = $sqlRow['filename'];
+                        }
 
-                            if ($status == 1) {
-                                echo '<img class="img-wrap" src="' . $imagePath . '/' . $filename . '" alt="Image of User" class="">';  
-                            } else {
-                                echo '<img style="" src="assets/defaultprofilepic.png" alt="Default Image of User" class="">';  
-                            }
-                            ?>
-                        </div>
+                        if ($profileImageAvailable) {
+                            echo '<img class="img-wrap" src="' . $imagePath . '/' . $filename . '" alt="Image of User" class="">';  
+                        } else {
+                            echo '<img style="" src="assets/defaultprofilepic.png" alt="Default Image of User" class="">';  
+                        }
+                        echo '<div class="profile-image-overlay"><p>Change Profile Image</p></div>';
+                        ?>
                     </a>
                 </div>
                 
@@ -66,8 +65,8 @@
             <!-- SEPARATOR -->
             <hr>
 
-            <!-- POST A NEW MESSAGE -->
             <div class="row">
+                <!-- POST A NEW MESSAGE -->
                 <div id="index_message_form" class="col col-md-5.5 index">
                     <form id="message_form" class="form-group" action="includes/post.inc.php" method="POST">
                         <!-- <label for="comment">Comment:</label> -->
@@ -99,15 +98,17 @@
                 $resultRows = mysqli_num_rows($result);
 
                 mysqli_close($conn); // Close connection to the DB
-
+                            
+                // Display messages associated with this user id
                 if (!$resultRows == 0) {
                     if (!empty($result)) {
                         while ($row = mysqli_fetch_array($result)) {
                             echo '<div class="row">';
-                            echo '<div class="col col-md-5 index index_results">';
-                            echo "<p>" . $row['message_post'] . "</p>";
-                            echo "<p>" . $row['message_timestamp'] . "</p>";
-                            echo '</div>';
+                                echo '<div class="col col-md-6 index index_results">';
+                                    echo "<p>" . $row['message_post'] . "</p>";
+                                    echo '<img style="width: 50px; height 50px;"class="" src="' . $imagePath . '/' . $filename . '" alt="Image of User" class="">';
+                                    echo "<p>" . $row['message_timestamp'] . "</p>";
+                                    echo '</div>';
                             echo '</div>';
                         }
                     }
@@ -125,5 +126,10 @@
 </section>
 
 <?php
-    include_once 'footer.php';
+
+function getFilePathToProfileImage() {
+
+}
+
+include_once 'footer.php';
 ?>

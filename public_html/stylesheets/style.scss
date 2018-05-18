@@ -83,7 +83,34 @@ $profilePicWidthAndheight: 200px;
     border-radius: $defaultBorderRadius;
     box-shadow: $defaultShadow;
 }
- 
+
+.profile-image-container {
+    position: relative; 
+}
+
+.profile-image-overlay {
+    position: absolute;
+    padding: 6px;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    height: 19%;
+    background: rgba(0, 0, 0, 0.5); // Black see-through
+    opacity: 0;
+    transition: .4s ease;
+    align-items: center;
+}
+
+    .profile-image-overlay p {
+        text-align: center;
+        font-size: 18px;
+        color: white;
+    }
+
+.profile-image-container:hover .profile-image-overlay {
+    opacity: 1;
+}
+
 #index_message_form {
     text-align: right;
 }
@@ -103,9 +130,10 @@ $profilePicWidthAndheight: 200px;
 }
 
 .index_results {
-    margin: 10px;
+    margin-left: 10px;
     overflow: hidden;
 }
+
 .index_results:hover {
     overflow: visible;
 }
