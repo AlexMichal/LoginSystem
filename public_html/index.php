@@ -47,7 +47,8 @@ include_once 'header.php';
                         } else {
                             echo '<img style="" src="assets/defaultprofilepic.png" alt="Default Image of User" class="">';  
                         }
-                        echo '<div class="profile-image-overlay"><p>Change Profile Image</p></div>';
+                        
+                        echo '<div class="profile-image-overlay"><img src="assets/image-icon-16x16.png">Change Profile Image</div>';
                         ?>
                     </a>
                 </div>

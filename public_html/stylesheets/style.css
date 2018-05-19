@@ -180,22 +180,19 @@ header nav ul li {
 }
 
 .profile-image-overlay {
+  display: flex;
   position: absolute;
-  padding: 6px;
   bottom: 12px;
   left: 0;
   width: 100%;
   height: 19%;
   background: rgba(0, 0, 0, 0.5);
   opacity: 0;
-  transition: .4s ease;
-  align-items: center;
-}
-
-.profile-image-overlay p {
-  text-align: center;
+  transition: .3s ease;
   font-size: 18px;
   color: white;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .profile-image-container:hover .profile-image-overlay {
